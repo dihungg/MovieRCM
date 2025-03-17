@@ -32,6 +32,7 @@
             const newChatBtn = document.getElementById("newChatBtn");
             let chatHistory = JSON.parse(localStorage.getItem("chatHistory")) || [];
             let currentChat = [];
+            let currentChatIndex = -1;  // Track the currently active history chat
 
             fetch("navigationbar.html")
             .then(response => response.text())
@@ -85,6 +86,19 @@
                         }
     
                         currentChat.push({ query, response: data.bot_response, movies: data.movies });
+
+                        if (currentChatIndex !== -1) {
+                            // Update the chat history at the correct index
+                            chatHistory[currentChatIndex] = [...currentChat];
+                        } else {
+                            // If no previous chat is being edited, save as a new chat
+                            chatHistory.push([...currentChat]);
+                            currentChatIndex = chatHistory.length - 1; // Set index to the new chat
+                        }
+
+                        // Save updates
+                        updateChatHistory();
+
                         chatMessages.scrollTop = chatMessages.scrollHeight;
                     });
             }
@@ -98,11 +112,12 @@
     
             newChatBtn.addEventListener("click", function () {
                 if (currentChat.length > 0) {
-                    chatHistory.push([...currentChat]);
+                    chatHistory[currentChatIndex !== -1 ? currentChatIndex : chatHistory.length] = [...currentChat];
                     updateChatHistory();
                     renderHistory();
-                    currentChat = [];
                 }
+                currentChat = [];
+                currentChatIndex = -1; // Reset to indicate a new chat session
                 chatMessages.innerHTML = "";
             });
     
@@ -111,12 +126,15 @@
             });
     
             window.loadChat = function(index) {
-                chatMessages.innerHTML = chatHistory[index].map(chat => {
+                currentChatIndex = index; // Track the chat being edited
+                currentChat = JSON.parse(JSON.stringify(chatHistory[index])); // Deep copy
+                
+                chatMessages.innerHTML = currentChat.map(chat => {
                     let chatHTML = `
                         <div class="user-message"><strong>You:</strong> ${chat.query}</div>
                         <div class="bot-message"><strong>Bot:</strong> ${chat.response}</div>
                     `;
-    
+
                     if (chat.movies && chat.movies.length) {
                         chatHTML += `<div class="bot-message"><strong>Here are some recommendations:</strong></div>`;
                         chat.movies.forEach(movie => {
@@ -135,7 +153,7 @@
                 }).join("");
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             };
-    
+
             window.deleteChat = function(index) {
                 chatHistory.splice(index, 1);
                 updateChatHistory();

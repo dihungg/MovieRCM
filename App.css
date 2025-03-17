@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+body {
+    background: linear-gradient(135deg, #121212, #1e1e1e);
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* HEADER */
+.header {
+    font-size: 52px;
+    font-weight: 700;
+    color: #ffde59;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    /* text-shadow: 3px 3px 15px rgb(255, 222, 89); */
+}
+
+.subtitle {
+    font-size: 22px;
+    color: #b0b0b0;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+/* GLOWING CHATBOT BUTTON */
+.ask-movies-btn {
+    width: 80%;
+    max-width: 350px;
+    padding: 18px;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-align: center;
+    background: linear-gradient(135deg, #FFDE59, #FFA500);
+    color: black;
+    box-shadow: 0 0 20px rgba(255, 222, 89, 0.8);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    outline: none;
+    display: inline-block;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glow & scale effect on hover */
+.ask-movies-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.8); /* Gold glow */
+}
+
+/* Pulsating animation */
+@keyframes pulse {
+    0% { box-shadow: 0 0 20px rgba(255, 222, 89, 0.6); }
+    50% { box-shadow: 0 0 35px rgba(255, 222, 89, 1); }
+    100% { box-shadow: 0 0 20px rgba(255, 222, 89, 0.6); }
+}
+
+.ask-movies-btn {
+    animation: pulse 1.5s infinite;
+}
+
+/* BUTTON CLICK EFFECT */
+.ask-movies-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 10px rgba(255, 222, 89, 1);
+}
+
+/* MOVIES CONTAINER */
+.movies-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
+    flex-wrap: nowrap;
+    max-width: 960px;
+    margin: auto;
+}
+
+/* MOVIE CARD */
+.movie-card {
+    width: 290px;
+    background: rgba(34, 34, 34, 0.85);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    text-align: center;
+    overflow: hidden;
+    min-height: 600px;
+    backdrop-filter: blur(12px);
+    position: relative;
+    border: 2px solid transparent;
+}
+
+/* POP-UP EFFECT WHEN HOVERING */
+.movie-card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 25px rgba(57, 57, 57, 0.8);
+    border-color: rgba(0, 0, 0, 0.8);
+}
+
+/* MOVIE POSTER */
+.movie-poster {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* MOVIE TITLE */
+.movie-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-top: 15px;
+}
+
+/* GENRE & RATINGS */
+.movie-genre {
+    font-size: 18px;
+    color: #b0b0b0;
+    margin: 6px 0;
+    font-weight: 600;
+}
+
+/* DIRECTOR, ACTORS, RUNTIME */
+.movie-director, .movie-actors, .movie-runtime {
+    font-size: 15px;
+    color: #cccccc;
+    margin-top: 5px;
+    font-weight: 500;
+    text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.1);
+}
+
+/* MOVIE DESCRIPTION */
+.movie-description {
+    font-size: 16px;
+    color: #cccccc;
+    margin-top: 10px;
+    overflow: visible;
+    display: block;
+    white-space: normal;
+    text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.1);
+}
+
+/* RANDOM PROMPTS SECTION */
+.prompts-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 10px;
+}
+
+.prompt-box {
+  background: rgba(40, 40, 40, 0.85);
+  border-radius: 10px;
+  padding: 15px;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-shadow: 0 4px 10px rgba(255, 222, 89, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+/* Hover Effect */
+.prompt-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(255, 222, 89, 0.8);
+}
+
+/* RESPONSIVE LAYOUT */
+@media (max-width: 800px) {
+  .prompts-container {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .prompts-container {
+      grid-template-columns: repeat(1, 1fr);
+  }
+}

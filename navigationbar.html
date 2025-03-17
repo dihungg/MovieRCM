@@ -1,0 +1,31 @@
+<header>
+    <nav class="navbar">
+        <!-- Logo -->
+        <div class="logo">
+            <img src="horizontal_logo.png" alt="Logo">
+        </div>
+
+        <!-- Navigation Menu -->
+        <ul class="nav-links" id="nav-links">
+            <li><a href="Home.html">Home</a></li>
+            <li><a href="TMDB.html">Searching</a></li>
+            <li><a href="App.html">Chatbot</a></li>
+        </ul>
+    </nav>
+</header>
+
+<script>
+    // JavaScript to Highlight Active Page
+    document.addEventListener("DOMContentLoaded", function () {
+        const currentPage = window.location.pathname.split("/").pop(); // Get current file name
+        const navLinks = document.querySelectorAll(".nav-links li a");
+
+        navLinks.forEach(link => {
+            if (link.getAttribute("href") === currentPage) {
+                link.classList.add("active"); // Add active class to current page link
+            } else {
+                link.classList.remove("active");
+            }
+        });
+    });
+</script>

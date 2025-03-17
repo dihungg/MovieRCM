@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Conversation</title>
+    <link rel="stylesheet" href="chatbot.css">
+    <link rel="stylesheet" href="navigationbar.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="header">💬 Chatbot Conversation</h2>
+        <button id="newChatBtn" class="new-chat-btn">New Chat</button>
+        <button id="historyToggleBtn" class="history-toggle-btn">Chat History</button>
+        <div id="historyPanel" class="chat-history-panel">
+            <h3>🕒 Chat History</h3>
+            <div id="historyEntries"></div>
+        </div>
+        <div id="chatContainer" class="chat-container">
+            <div id="chatMessages" class="chat-messages"></div>
+            <input type="text" id="chatInput" class="search-input" placeholder="Type your message...">
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const chatMessages = document.getElementById("chatMessages");
+            const chatInput = document.getElementById("chatInput");
+            const historyPanel = document.getElementById("historyPanel");
+            const historyEntries = document.getElementById("historyEntries");
+            const historyToggleBtn = document.getElementById("historyToggleBtn");
+            const newChatBtn = document.getElementById("newChatBtn");
+            let chatHistory = JSON.parse(localStorage.getItem("chatHistory")) || [];
+            let currentChat = [];
+
+            fetch("navigationbar.html")
+            .then(response => response.text())
+            .then(data => {
+                document.body.insertAdjacentHTML("afterbegin", data);
+            });
+    
+            // Auto-fill and send query if redirected from prompt
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get("query");
+            if (query) {
+                chatInput.value = query;
+                sendMessage(query);
+            }
+    
+            function updateChatHistory() {
+                localStorage.setItem("chatHistory", JSON.stringify(chatHistory));
+            }
+    
+            function renderHistory() {
+                historyEntries.innerHTML = chatHistory.map((chat, index) => `
+                    <div>
+                        <button onclick="loadChat(${index})">Chat ${index + 1}</button>
+                        <button onclick="deleteChat(${index})">🗑 Delete</button>
+                    </div>
+                `).join("");
+            }
+    
+            function sendMessage(query) {
+                fetch(`http://127.0.0.1:8000/chatbot?user_message=${encodeURIComponent(query)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        chatMessages.innerHTML += `<div class="user-message"><strong>You:</strong> ${query}</div>`;
+                        chatMessages.innerHTML += `<div class="bot-message"><strong>Bot:</strong> ${data.bot_response}</div>`;
+    
+                        let movieListHTML = "";
+                        if (data.movies.length) {
+                            movieListHTML += `<div class="bot-message"><strong>Here are some recommendations:</strong></div>`;
+                            data.movies.forEach(movie => {
+                                movieListHTML += `
+                                    <div class="movie-card">
+                                        <img class="movie-poster" src="${movie.poster}" alt="${movie.title}">
+                                        <h3>${movie.title} (${movie.year})</h3>
+                                        <p class="movie-genre">🎭 ${movie.genre}</p>
+                                        <p class="movie-ratings">⭐ ${movie.imdb_rating} | 🍅 ${movie.rotten_rating}</p>
+                                        <p class="movie-description">${movie.description}</p>
+                                    </div>
+                                `;
+                            });
+                            chatMessages.innerHTML += movieListHTML;
+                        }
+    
+                        currentChat.push({ query, response: data.bot_response, movies: data.movies });
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    });
+            }
+    
+            chatInput.addEventListener("keydown", function (event) {
+                if (event.key === "Enter" && chatInput.value.trim()) {
+                    sendMessage(chatInput.value.trim());
+                    chatInput.value = "";
+                }
+            });
+    
+            newChatBtn.addEventListener("click", function () {
+                if (currentChat.length > 0) {
+                    chatHistory.push([...currentChat]);
+                    updateChatHistory();
+                    renderHistory();
+                    currentChat = [];
+                }
+                chatMessages.innerHTML = "";
+            });
+    
+            historyToggleBtn.addEventListener("click", function () {
+                historyPanel.classList.toggle("open");
+            });
+    
+            window.loadChat = function(index) {
+                chatMessages.innerHTML = chatHistory[index].map(chat => {
+                    let chatHTML = `
+                        <div class="user-message"><strong>You:</strong> ${chat.query}</div>
+                        <div class="bot-message"><strong>Bot:</strong> ${chat.response}</div>
+                    `;
+    
+                    if (chat.movies && chat.movies.length) {
+                        chatHTML += `<div class="bot-message"><strong>Here are some recommendations:</strong></div>`;
+                        chat.movies.forEach(movie => {
+                            chatHTML += `
+                                <div class="movie-card">
+                                    <img class="movie-poster" src="${movie.poster}" alt="${movie.title}">
+                                    <h3>${movie.title} (${movie.year})</h3>
+                                    <p class="movie-genre">🎭 ${movie.genre}</p>
+                                    <p class="movie-ratings">⭐ ${movie.imdb_rating} | 🍅 ${movie.rotten_rating}</p>
+                                    <p class="movie-description">${movie.description}</p>
+                                </div>
+                            `;
+                        });
+                    }
+                    return chatHTML;
+                }).join("");
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            };
+    
+            window.deleteChat = function(index) {
+                chatHistory.splice(index, 1);
+                updateChatHistory();
+                renderHistory();
+            };
+    
+            renderHistory();
+        });
+    </script>    
+</body>
+</html>

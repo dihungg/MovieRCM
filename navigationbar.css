@@ -1,0 +1,99 @@
+/* GENERAL STYLING */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    color: white;
+    background: linear-gradient(135deg, #121212, #1e1e1e);
+    text-align: center;
+}
+
+/* NAVIGATION BAR */
+header {
+    padding: 15px 0;
+    background: rgba(20, 20, 20, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+    width: 90%;
+    margin: auto;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 22px;
+    font-weight: 600;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0 30px;
+}
+
+/* LOGO */
+.logo img {
+    width: 150px;
+    height: auto;
+}
+
+/* NAVIGATION LINKS */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* NAVIGATION LINKS STYLE */
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    position: relative;
+    padding: 10px 15px;
+    transition: color 0.3s ease;
+}
+
+/* HOVER EFFECT */
+.nav-links li a:hover {
+    color: #ffde59; 
+}
+
+/* UNDERLINE EFFECT (ACTIVE PAGE) */
+.nav-links li a::after {
+    content: "";
+    width: 0;
+    height: 3px;
+    background: #ffde59; /* Purple */
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.nav-links li a.active::after {
+    width: 100%;
+}
+
+/* RESPONSIVE NAVBAR */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+}

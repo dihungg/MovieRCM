@@ -1,3 +1,6 @@
+const API_KEY = '738f8682fc5143163b145d03a2016b0b'; // Thay bằng key bảo mật
+const BASE_URL = 'https://api.themoviedb.org/3/';
+
 document.addEventListener("DOMContentLoaded", function () {
     fetchAndProcessCSV();
     
@@ -198,3 +201,60 @@ function addScrollButtons() {
         });
     });
 }
+
+
+
+///// Dùng để chuyển qua trailer 
+async function getMovieId(movieTitle) {
+    try {
+        const response = await fetch(`${BASE_URL}search/movie?api_key=${API_KEY}&query=${encodeURIComponent(movieTitle)}`);
+        const data = await response.json();
+
+        if (data.results.length > 0) {
+            return data.results[0].id; // Lấy ID của phim đầu tiên trong kết quả
+        } else {
+            console.warn("Không tìm thấy phim:", movieTitle);
+            return null;
+        }
+    } catch (error) {
+        console.error("Lỗi khi tìm movieId:", error);
+        return null;
+    }
+}
+
+async function fetchMovieTrailer(movieTitle) {
+    const movieId = await getMovieId(movieTitle);  // Tìm ID phim trước
+
+    if (!movieId) {
+        alert("Không tìm thấy phim trên TMDB.");
+        return;
+    }
+
+    try {
+        const response = await fetch(`${BASE_URL}movie/${movieId}/videos?api_key=${API_KEY}`);
+        const data = await response.json();
+
+        const trailer = data.results.find(video => video.type === "Trailer" && video.site === "YouTube");
+
+        if (trailer) {
+            window.open(`https://www.youtube.com/watch?v=${trailer.key}`, "_blank");
+        } else {
+            alert("Không tìm thấy trailer.");
+        }
+    } catch (error) {
+        console.error("Lỗi khi tải trailer:", error);
+    }
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("trailer-btn").addEventListener("click", function () {
+        const movieTitle = document.getElementById("modalTitle").textContent;
+        if (movieTitle) {
+            console.log("Tìm trailer cho:", movieTitle);
+            fetchMovieTrailer(movieTitle);
+        } else {
+            alert("Không tìm thấy tên phim.");
+        }
+    });
+});

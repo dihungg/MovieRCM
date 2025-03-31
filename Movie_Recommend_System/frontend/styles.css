@@ -1,0 +1,385 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+
+/* Thanh điều hướng */
+
+
+/* Logo */
+
+
+
+
+/* Menu */
+
+
+
+
+
+
+/* Hiệu ứng hover */
+
+
+/* Gạch dưới khi active */
+/* Ô tìm kiếm */
+/* Tạo hiệu ứng dropdown cho ô tìm kiếm */
+.search-container {
+    position: relative;
+    display: inline-block;
+}
+
+#searchBar {
+    position: absolute;
+    top: 40px; /* Đẩy ô tìm kiếm xuống dưới icon */
+    transform: translateX(-50%);
+    width: 200px;
+    padding: 8px;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.search-container.active #searchBar {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(5px);
+}
+
+.search-icon {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+input {
+    padding: 10px;
+    width: 200px;
+}
+
+#main-poster img {
+    width: 50%;
+    margin: 20px 0;
+}
+
+#categories {
+    padding: 20px;
+}
+
+
+
+
+
+
+
+.genre {
+    margin: 10px;
+    padding: 10px;
+    display: inline-block;
+    background-color: #333;
+}
+
+
+.top-movies-section {
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.movie-list-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.movie-list {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    white-space: nowrap;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+
+.movie-list::-webkit-scrollbar {
+    display: none;
+}
+
+.movie-card {
+    height: 120%;
+    width: 150px;
+    text-align: center;
+    flex-shrink: 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+.movie-card p {
+    margin-top: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    display: block;
+    height: 20px; /* Đảm bảo dòng chữ có cùng chiều cao */
+    line-height: 20px;
+}
+
+
+.movie-card img {
+    width: 100%;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+    height: 220px; /* Giới hạn chiều cao ảnh */
+    object-fit: cover; /* Cắt ảnh nếu quá dài */
+}
+
+.movie-card:hover {
+    transform: scale(1.1);
+}
+
+.scroll-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 18px;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.movie-list-container:hover .scroll-button {
+    opacity: 0.7;
+}
+
+.scroll-button.left {
+    left: 0;
+}
+
+.scroll-button.right {
+    right: 0;
+}
+
+.scroll-button:hover {
+    opacity: 1;
+}
+@keyframes scrollMovies {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+@media (max-width: 768px) {
+    .movie-list {
+        animation: scrollMovies 10s infinite linear;
+    }
+}
+
+
+/* ////////////////////////////////////////////////////////////////////// */
+/* Dành cho Genre */
+/* Thể loại phim */
+body {
+    background-color: #111;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+h1, h2 {
+    color: white;
+    margin-left: 0;
+    text-align: left; /* Đảm bảo rằng tiêu đề sẽ được căn trái */
+}
+
+
+header {
+    background-color: #000;
+    padding: 15px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+#genre-sections {
+    padding: 20px;
+}
+
+.genre-section {
+    margin-bottom: 30px;
+}
+
+.genre-section h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Phần danh sách phim cuộn ngang */
+.movie-list {
+    display: flex;
+    overflow-x: auto;
+    gap: 15px;
+    padding-bottom: 10px;
+}
+
+.movie-card {
+    width: 180px;
+    text-align: center;
+    flex: 0 0 auto; /* Không co lại khi cuộn */
+}
+
+.movie-card img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+
+
+
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* Dành cho chi tiết phim */
+/* Chi tiết phim */
+/* CSS cho popup */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 90%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 600px;
+    width: 80%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: slideDown 0.4s ease-in-out;
+}
+
+.modal img {
+    width: 60%; 
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.movie-info {
+    text-align: left;
+    margin-top: 15px;
+    color: #222; /* Chữ màu đen đậm */
+}
+
+#modalTitle.highlight {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color:#000;
+    font-weight: bold;
+}
+
+.label {
+    font-weight: bold;
+    color: #000000;
+}
+
+
+.movie-info p {
+    font-size: 18px;
+    margin: 8px 0;
+    font-weight: 500; /* Làm đậm hơn */
+    line-height: 1.5; /* Cải thiện khoảng cách dòng */
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #555;
+    transition: color 0.3s ease-in-out;
+}
+
+.close:hover {
+    color: #ff0000;
+}
+
+/* Hiệu ứng xuất hiện */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+/* Nút Trailer */
+#trailer-btn {
+    margin-top: 15px;
+    padding: 12px;
+    background-color: #FF4500;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+#trailer-btn:hover {
+    background-color: #E63900;
+}
+

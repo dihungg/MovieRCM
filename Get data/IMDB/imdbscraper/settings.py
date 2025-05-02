@@ -1,4 +1,4 @@
-# Scrapy settings for imdbRating project
+# Scrapy settings for imdbscraper project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,23 +7,14 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "imdbRating"
+BOT_NAME = "imdbscraper"
 
-SPIDER_MODULES = ["imdbRating.spiders"]
-NEWSPIDER_MODULE = "imdbRating.spiders"
-
-USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-
-
-DEFAULT_REQUEST_HEADERS = {
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
-    "Accept-Language": "en-US,en;q=0.5",
-    "Referer": "https://www.google.com/",
-}
+SPIDER_MODULES = ["imdbscraper.spiders"]
+NEWSPIDER_MODULE = "imdbscraper.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "imdbRating (+http://www.yourdomain.com)"
+#USER_AGENT = "imdbscraper (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -54,16 +45,19 @@ ROBOTSTXT_OBEY = False
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "imdbRating.middlewares.ImdbratingSpiderMiddleware": 543,
+#    "imdbscraper.middlewares.ImdbscraperSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
+#DOWNLOADER_MIDDLEWARES = {
+#    "imdbscraper.middlewares.ImdbscraperDownloaderMiddleware": 543,
+#}
+
 DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
-    'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
+    'scrapy_user_agents.middlewares.RandomUserAgentMiddleware': 400,
 }
-
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
@@ -73,9 +67,9 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "imdbRating.pipelines.ImdbratingPipeline": 300,
-#}
+ITEM_PIPELINES = {
+    "imdbscraper.pipelines.SecondsToReal": 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

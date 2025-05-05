@@ -1,0 +1,209 @@
+/* modal.css */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 800px;
+    max-height: 80vh; /* Giới hạn chiều cao */
+    width: 90%;
+    display: flex;
+    gap: 20px;
+    position: relative;
+    overflow-y: auto; /* Thêm scroll khi cần */
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    font-family: 'Arial', sans-serif;
+    animation: slideDown 0.4s ease-in-out;
+}
+
+.modal-poster {
+    width: 300px;
+    border-radius: 5px;
+    height: 440px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease; /* Hiệu ứng hover */
+}
+
+.modal-poster:hover {
+    transform: scale(1.02); /* Phóng nhẹ khi hover */
+}
+
+.movie-title {
+    color: #2c3e50;
+    font-size: 2.2em; /* Tăng kích thước */
+    font-weight: 700; /* Độ đậm */
+    margin: 0 0 20px 0;
+    padding-bottom: 12px;
+    border-bottom: 3px solid #e50914; /* Viền dày hơn */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* Hiệu ứng bóng */
+}
+
+.modal-info {
+    flex: 1;
+    padding-right: 25px; /* Tạo khoảng cách với poster */
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.trailer-button {
+    display: inline-flex;
+    padding: 10px 20px;
+    background-color: #e50914;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.trailer-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(229, 9, 20, 0.3);
+}
+
+.modal-info p {
+    margin: 10px 0;
+    line-height: 1.6;
+    color: #34495e; /* Màu chữ tối vừa phải */
+    font-size: 0.95em;
+}
+
+.modal-info strong {
+    color: #2c3e50; /* Màu đậm hơn cho nhãn */
+}
+
+.no-trailer {
+    color: #666;
+    font-style: italic;
+}
+
+.modal-info p:has(strong:contains("IMDB")) {
+    background: rgba(245,181,10,0.1);
+    padding: 8px 12px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.modal-info p:has(strong:contains("Rotten")) {
+    background: rgba(255,36,0,0.1);
+    padding: 8px 12px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.movie-info {
+    padding: 15px;
+}
+
+.label {
+    color: #2c3e50;; 
+    font-weight: 600;
+    margin-right: 8px;
+}
+
+.highlight {
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+/* Emoji styling */
+p > span:first-child {
+    margin-right: 5px;
+}
+
+p > span:nth-child(2) {
+    margin-right: 10px;
+}
+
+/* Video container */
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    margin: 15px 0;
+    display: none;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        flex-direction: column;
+        overflow-y: auto;
+        max-height: 90vh;
+        padding: 25px;
+    }
+    
+    .modal-poster {
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto 15px;
+        height: auto;
+        max-height: 500px;
+    }
+    .movie-title {
+        font-size: 1.8em; /* Giữ kích thước lớn trên mobile */
+        text-align: center; /* Căn giữa tiêu đề */
+    }
+    .modal-info {
+        text-align: center; /* Căn giữa nội dung */
+    }
+    
+    .trailer-button {
+        margin: 15px auto; /* Căn giữa nút trailer */
+    }
+
+    .movie-info p {
+        font-size: 0.9em;
+    }
+}
+
+/* Thêm hiệu ứng xuất hiện */
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-content {
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+/* Tinh chỉnh màu nền */
+.modal-content {
+    background: #ffffff; /* Màu trắng tinh */
+    border: 1px solid #eee; /* Viền nhẹ */
+}
+

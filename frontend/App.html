@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation Chatbot</title>
+    <link rel="stylesheet" href="App.css">
+    <link rel="stylesheet" href="navigationbar.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="header"> Movie Recommendation Chatbot</h2>
+        <p class="subtitle">Find the best movies instantly! Just ask Cinamate for a recommendation.</p>
+        
+        <!-- Beautiful Animated Button -->
+        <button class="ask-movies-btn" onclick="goToChatbot()">🎥 Ask Cinemate's chatbot!</button>
+
+        <!-- Random Prompts Section -->
+        <h3 class="subtitle">✨ Try Some Random Prompts:</h3>
+        <div class="prompts-container">
+            <div class="prompt-box" onclick="goToChatbotWithPrompt('Recommend me a comedy movie')">😂 Recommend me a comedy movie</div>
+            <div class="prompt-box" onclick="goToChatbotWithPrompt('Find movies with Leonardo DiCaprio')">🎭 Find movies with Leonardo DiCaprio</div>
+            <div class="prompt-box" onclick="goToChatbotWithPrompt('Show me movies directed by Christopher Nolan')">🎬 Show me movies directed by Christopher Nolan</div>
+            <div class="prompt-box" onclick="goToChatbotWithPrompt('Best movies from 2010')">🕒 Best movies from 2010</div>
+            <div class="prompt-box" onclick="goToChatbotWithPrompt('Short movies under 90 minutes')">⏳ Short movies under 90 minutes</div>
+            <div class="prompt-box" onclick="goToChatbotWithPrompt('A movie about time travel')">🔄 A movie about time travel</div>
+        </div>
+
+        <!-- Movies container -->
+        <div class="movies-container" id="moviesList"></div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const moviesList = document.getElementById("moviesList");
+
+            fetch("navigationbar.html")
+            .then(response => response.text())
+            .then(data => {
+                document.body.insertAdjacentHTML("afterbegin", data);
+            });
+
+            function fetchMovies() {
+                fetch("http://127.0.0.1:5000/random_movies")
+                    .then(response => response.json())
+                    .then(data => {
+                        moviesList.innerHTML = "";
+                        data.movies.forEach(movie => {
+                            moviesList.innerHTML += `
+                                <div class="movie-card">
+                                    <img class="movie-poster" src="${movie.poster}" alt="${movie.title}">
+                                    <h3 class="movie-title">${movie.title} (${movie.year})</h3>
+                                    <p class="movie-genre">📽️ ${movie.genre}</p>
+                                    <p class="movie-ratings">⭐ ${movie.imdb_rating} | 🍅 ${movie.rotten_rating}</p>
+                                    <p class="movie-director">🎬 Director: ${movie.director}</p>
+                                    <p class="movie-actors">🎭 Actors: ${movie.actors}</p>
+                                    <p class="movie-runtime">⏳ Runtime: ${movie.runtime} mins</p>
+                                    <p class="movie-description">${movie.description}</p>
+                                </div>
+                            `;
+                        });
+                    });
+            }
+
+            fetchMovies();
+        });
+
+        function goToChatbot() {
+            window.location.href = "chatbot.html";
+        }
+
+        function goToChatbotWithPrompt(prompt) {
+            window.location.href = `chatbot.html?query=${encodeURIComponent(prompt)}`;
+        }
+    </script>
+</body>
+</html>

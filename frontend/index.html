@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Web Phim</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navigationbar.css">
+</head>
+<body>
+    <!-- < Phần đầu trang -->
+    <header>
+        <nav class="navbar">
+            <!-- Logo -->
+            <div class="logo">
+                <img src="horizontal_logo.png" alt="Logo">
+            </div>
+    
+            <!-- Navigation Menu -->
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="genre.html">Genre</a></li>
+                <li><a href="TMDB.html">Searching</a></li>
+                <li><a href="App.html">Chatbot</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    
+    <!-- Phần giữa trang: Poster lớn thay đổi liên tục -->
+    <section id="main-poster">
+        <img id="poster" src="" alt="Poster phim">
+    </section>
+
+    <div class="top-movies-section">
+        <h2>Top IMDb Rating</h2>
+        <div class="movie-list-container">
+            <button class="scroll-button left">&#10094;</button>
+            <div id="top-imdb" class="movie-list"></div>
+            <button class="scroll-button right">&#10095;</button>
+        </div>
+    
+        <h2>Top Rotten Tomatoes Rating</h2>
+        <div class="movie-list-container">
+            <button class="scroll-button left">&#10094;</button>
+            <div id="top-rotten" class="movie-list"></div>
+            <button class="scroll-button right">&#10095;</button>
+        </div>
+    
+        <h2>Top Metacritic Rating</h2>
+        <div class="movie-list-container">
+            <button class="scroll-button left">&#10094;</button>
+            <div id="top-metacritic" class="movie-list"></div>
+            <button class="scroll-button right">&#10095;</button>
+        </div>
+    </div>
+    
+    <!-- Phần kết quả tìm kiếm -->
+    <section id="search-results"></section>
+    
+    <!-- Phần cuối trang: Danh mục thể loại phim -->
+    <section id="movie-categories">
+        <h2>Thể loại phim</h2>
+        <div id="genre-list"></div>
+    </section>
+    
+    <script src="script.js"></script>
+    <script src="scroll.js"></script>
+
+
+
+<!-- /////////////////////////////////////////////////////////////// -->
+    <!-- Popup hiển thị thông tin phim -->
+    <div id="movieModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <img id="modalPoster" src="" alt="Movie Poster">
+            <h2><span id="modalTitle" class="highlight"></span></h2>
+            <div class="movie-info">
+                <p><span class="label">Thể loại:</span> 🎭 <span id="modalGenre" class="highlight"></span></p>
+                <p><span class="label">Mô tả:</span> 🎬 <span id="modalOverview" class="highlight"></span></p>
+                <p><span class="label">Thời lượng:</span> ⏳ <span id="modalRuntime" class="highlight"></span> phút</p>
+                <p><span class="label">Đạo diễn:</span> <span id="modalDirector" class="highlight"></span></p>
+                <p><span class="label">Năm phát hành:</span> 📅 <span id="modalYear" class="highlight"></span></p>
+                <p><span class="label">IMDb:</span> ⭐ <span id="modalImdbRating" class="highlight"></span></p>
+                <p><span class="label">Rotten Tomatoes:</span> 🍅 <span id="modalRottenRating" class="highlight"></span>%</p>
+                <button id="trailer-btn">Xem Trailer</button>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+</body>
+</html>
+  

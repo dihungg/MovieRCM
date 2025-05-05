@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Thể Loại Phim</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navigationbar.css">
+</head>
+<body>
+    <!-- < Phần đầu trang -->
+    <header>
+        <nav class="navbar">
+            <!-- Logo -->
+            <div class="logo">
+                <img src="horizontal_logo.png" alt="Logo">
+            </div>
+    
+            <!-- Navigation Menu -->
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="genre.html" class="active">Genre</a></li>
+                <li><a href="TMDB.html">Searching</a></li>
+                <li><a href="App.html">Chatbot</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Phần hiển thị thể loại phim -->
+    <section id="genre-sections">
+        <!-- Các thể loại phim sẽ được thêm vào đây bằng JavaScript -->
+    </section>
+    
+    
+    <script src="genre.js"></script>
+    <script src="scroll.js"></script>
+
+
+    <div id="movieModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <img id="modalPoster" src="" alt="Movie Poster">
+            <h2><span id="modalTitle" class="highlight"></span></h2>
+            <div class="movie-info">
+                <p><span class="label">Thể loại:</span> 🎭 <span id="modalGenre" class="highlight"></span></p>
+                <p><span class="label">Mô tả:</span> 🎬 <span id="modalOverview" class="highlight"></span></p>
+                <p><span class="label">Thời lượng:</span> ⏳ <span id="modalRuntime" class="highlight"></span> phút</p>
+                <p><span class="label">Đạo diễn:</span> <span id="modalDirector" class="highlight"></span></p>
+                <p><span class="label">Năm phát hành:</span> 📅 <span id="modalYear" class="highlight"></span></p>
+                <p><span class="label">IMDb:</span> ⭐ <span id="modalImdbRating" class="highlight"></span></p>
+                <p><span class="label">Rotten Tomatoes:</span> 🍅 <span id="modalRottenRating" class="highlight"></span>%</p>
+                <button id="trailer-btn">Xem Trailer</button>
+            </div>
+        </div>
+    </div>
+    
+    
+</body>
+</html>

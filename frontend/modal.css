@@ -207,3 +207,28 @@ p > span:nth-child(2) {
     border: 1px solid #eee; /* Viền nhẹ */
 }
 
+
+
+.overview-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 3.2em; /* khoảng 2 dòng */
+    transition: all 0.3s ease;
+}
+
+.overview-text.expanded {
+    -webkit-line-clamp: unset;
+    max-height: none;
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    color: #e50914;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 10px;
+}

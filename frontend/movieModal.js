@@ -77,6 +77,9 @@ function handleMovieClicks() {
     });
 }
 
+
+
+
 // Khởi tạo khi trang load xong
 document.addEventListener('DOMContentLoaded', () => {
     initializeMovieModal();

@@ -43,25 +43,27 @@ function fetchAndProcessCSV() {
 }
 
 function parseCSV(data) {
-    const rows = data.split("\n").slice(1);
+    const rows = data.split("\n").slice(1); // Bỏ dòng tiêu đề
     return rows.map(row => {
-        const columns = row.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
-        if (!columns || columns.length < 8) return null;
-        
+        const columns = row.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/); // Tách theo dấu phẩy ngoài dấu ngoặc kép
+
+        if (!columns || columns.length < 12) return null; // Đảm bảo có đủ 12 cột
+
         return {
             poster: columns[0].replace(/"/g, '').trim(),
             name: columns[1].replace(/"/g, '').trim(),
-            genre: columns[4] ? columns[4].replace(/"/g, '').trim() : "Unknown",
-            year: columns[10] || "N/A",
+            genre: columns[5] ? columns[5].replace(/"/g, '').trim() : "Unknown",
+            year: columns[8] || "N/A",
             director: columns[7] || "N/A",
-            runtime: columns[6] || "N/A",
-            overview: columns[5] || "Không có mô tả.",
-            imdbRating: parseFloat(columns[11]) || 0,
-            rottenRating: parseFloat(columns[13]) || 0,
-            metacriticRating: parseFloat(columns[14]) || 0
+            runtime: columns[4] ? columns[4].replace(/"/g, '').trim() + " min" : "N/A",
+            overview: columns[3] || "Không có mô tả.",
+            imdbRating: parseFloat(columns[9]) || 0,
+            rottenRating: parseFloat(columns[10]) || 0,
+            metacriticRating: parseFloat(columns[11]) || 0
         };
     }).filter(movie => movie !== null);
 }
+
 
 function changePoster() {
     if (movies.length === 0) return;
@@ -216,3 +218,5 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+

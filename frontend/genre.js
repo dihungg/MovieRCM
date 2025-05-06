@@ -38,43 +38,51 @@ function fetchAndProcessCSV() {
 
 // Chuyển đổi dữ liệu từ CSV
 function parseCSV(data) {
-    const rows = data.split("\n").slice(1); // Bỏ dòng tiêu đề
+    const rows = data.split("\n").slice(1);
     return rows.map(row => {
-        const columns = row.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/); // Xử lý dấu phẩy trong dấu ngoặc kép
-        if (columns.length < 8) return null; // Bỏ qua dòng lỗi
+        const columns = row.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
+        if (columns.length < 12) {
+            console.warn("Dòng không hợp lệ:", row);
+            return null;
+        }
 
         return {
             poster: columns[0].replace(/"/g, '').trim(),
             name: columns[1].replace(/"/g, '').trim(),
-            genre: getMainGenre(columns[4] ? columns[4].replace(/"/g, '').trim() : "Unknown"),
-            year: columns[10] || "N/A",
+            genre: columns[5]?.replace(/"/g, '').trim() || "Unknown",
+            year: columns[8] || "N/A",
             director: columns[7] || "N/A",
-            runtime: columns[6] || "N/A",
-            overview: columns[5] || "Không có mô tả.",
-            imdbRating: parseFloat(columns[11]) || 0,
-            rottenRating: parseFloat(columns[13]) || 0,
-            metacriticRating: parseFloat(columns[14]) || 0
+            runtime: columns[4]?.replace(/"/g, '').trim() + " min" || "N/A",
+            overview: columns[3] || "Không có mô tả.",
+            imdbRating: parseFloat(columns[9]) || 0,
+            rottenRating: parseFloat(columns[10]) || 0,
+            tmdbRating: parseFloat(columns[11]) || 0,
+            actors: columns[6]?.replace(/"/g, '').trim() || "N/A"
         };
-    }).filter(movie => movie !== null); // Xóa phần tử null
+    }).filter(Boolean);
 }
 
 // Xác định thể loại chính
 function getMainGenre(genreString) {
     const genreMapping = {
-        "Hành động & Phiêu lưu": ["Action", "Adventure", "Thriller"],
-        "Khoa học viễn tưởng": ["Sci-Fi"],
-        "Tội phạm & Hành động": ["Crime"],
-        "Kinh dị & Giật gân": ["Horror", "Thriller"],
+        "Hành động & Phiêu lưu": ["Action", "Adventure"],
+        "Khoa học viễn tưởng": ["Science Fiction"],
+        "Tội phạm & Hành động": ["Crime", "Thriller"],
+        "Kinh dị & Giật gân": ["Horror", "Mystery"],
         "Hoạt hình & Gia đình": ["Animation", "Family"],
-        "Chính kịch & Lịch sử": ["Drama", "History", "Biography"],
-        "Hài & Lãng mạn": ["Comedy", "Romance"]
+        "Chính kịch & Lịch sử": ["Drama", "History", "Biography", "War"],
+        "Hài & Lãng mạn": ["Comedy", "Romance"],
+        "Khác": ["Western", "Fantasy", "Music", "TV Movie"]
     };
 
+    const genres = genreString.split(',').map(g => g.trim());
+
     for (const key in genreMapping) {
-        if (genreMapping[key].some(g => genreString.includes(g))) {
+        if (genreMapping[key].some(g => genres.includes(g))) {
             return key;
         }
     }
+
     return "Khác";
 }
 

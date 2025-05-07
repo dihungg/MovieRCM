@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Info</title>
+    <link rel="stylesheet" href="TMDB.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="navigationbar.css">
+</head>
+<body>
+    <!-- < Phần đầu trang -->
+    <!-- < Phần đầu trang -->
+    <header>
+        <nav class="navbar">
+            <!-- Logo -->
+            <div class="logo">
+                <img src="horizontal_logo.png" alt="Logo">
+            </div>
+    
+            <!-- Navigation Menu -->
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="genre.html">Genre</a></li>
+                <li><a href="App.html">Chatbot</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="background-overlay">
+            <!-- < Phần đầu trang -->
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Nhập tên phim...">
+            <button id="search-btn">Tìm kiếm</button>
+        </div>
+
+        <div class="movie-container">
+            <div class="movie-poster">
+                <img id="poster" src="" alt="Movie Poster">
+            </div>
+            <div class="movie-info">
+                <h1 id="title"></h1>
+                <p><strong>Release Date:</strong> <span id="release-date"></span></p>
+                <p><strong>Genres:</strong> <span id="genres"></span></p>
+                <p><strong>Runtime:</strong> <span id="runtime"></span></p>
+                <p><strong>Overview:</strong> <span id="overview"></span></p>
+                <p><strong>Director:</strong> <span id="director"></span></p>
+                <p><strong>User Score:</strong> <span id="score"></span></p>
+                <button id="trailer-btn">Xem Trailer</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="TMDB.js"></script>
+</body>
+</html>

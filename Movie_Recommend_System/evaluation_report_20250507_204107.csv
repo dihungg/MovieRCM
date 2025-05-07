@@ -1,0 +1,31 @@
+test_case,precision,recall,response_time,recommended,expected
+phim kinh dị,0.8,0.8,6.35,"['Psycho', 'Alien', 'The Shining', 'The Thing', 'What Ever Happened to Baby Jane?']","['Alien', 'The Shining', 'The Thing', 'Get out', 'Psycho']"
+horor movie,0.8,0.8,1.84,"['Psycho', 'Alien', 'The Shining', 'The Thing', 'What Ever Happened to Baby Jane?']","['Alien', 'The Shining', 'The Thing', ""Michael Jackson's Thriller"", 'Psycho']"
+phim khoa học viễn tưởng,0.8,1.0,7.49,"['Batman: The Dark Knight Returns, Part 2', 'Inception', 'Interstellar', 'The Matrix', 'Star Wars']","['Interstellar', 'Inception', 'The Matrix', 'Star Wars']"
+science ficition movie,0.8,0.8,23.19,"['Batman: The Dark Knight Returns, Part 2', 'Inception', 'Interstellar', 'The Matrix', 'Star Wars']","['Interstellar', 'Inception', 'The Matrix', 'The Empire Strikes Back', 'Star Wars']"
+phim hài của tom hanks,0.6,0.75,25.36,"['Forrest Gump', 'The Green Mile', 'Saving Private Ryan', 'Toy Story', 'Catch Me If You Can']","['Forest Gump', 'The Green Mile', 'Toy Story', 'Catch Me If You Can']"
+phim hành động,0.4,0.4,1.85,"['The Lord of the Rings: The Return of the King', 'The Dark Knight', 'Batman: The Dark Knight Returns, Part 2', 'The Lord of the Rings: The Fellowship of the Ring', 'Inception']","['Inception', 'The Dark Knight', 'The Matrix', 'The Avengers', 'Gladiator']"
+phim hoạt hình,0.6,0.6,22.99,"['Batman: The Dark Knight Returns, Part 2', 'Spirited Away', 'The Lion King', 'Spider-Man: Across the Spider-Verse', 'Grave of the Fireflies']","['The Lion King', 'Toy Story', 'Batman: The Dark Knight Returns, Part 2', 'Spirited Away', 'Inside Out']"
+phim phiêu lưu,0.4,0.4,23.39,"['The Lord of the Rings: The Return of the King', 'The Lord of the Rings: The Fellowship of the Ring', 'Inception', 'The Lord of the Rings: The Two Towers', 'The Empire Strikes Back']","['The Lord of the Rings: The Fellowship of the Ring', 'Indiana Jones and the Last Crusade', 'Inception', 'The Hobbit: An Unexpected Journey', 'Avatar']"
+phim tâm lý,0.6,0.75,25.85,"['The Shawshank Redemption', 'The Godfather', 'The Godfather Part II', '12 Angry Men', ""Schindler's List""]","['The Godfather', 'Pulp Fiction', 'The Shawshank Redemption', 'The Godfather Part II']"
+phim hài,0.6,0.6,24.81,"['Forrest Gump', 'Life Is Beautiful', 'Modern Times', 'Parasite', 'City Lights']","['Life Is Beautiful', 'Superbad', 'Groundhog Day', 'Modern Times', 'Parasite']"
+phim của tom hanks,0.8,0.8,1.37,"['Forrest Gump', 'The Green Mile', 'Saving Private Ryan', 'Toy Story', 'Catch Me If You Can']","['Forrest Gump', 'The Green Mile', 'Cast Away', 'Saving Private Ryan', 'Catch Me If You Can']"
+dama movie,0.6,0.75,22.13,"['The Shawshank Redemption', 'The Godfather', 'The Godfather Part II', '12 Angry Men', ""Schindler's List""]","['The Godfather', '12 Angry Men', 'The Dark Knight', 'The Godfather Part II']"
+phim có matt damon,1.0,0.75,22.79,"['Saving Private Ryan', 'The Departed', 'Good Will Hunting']","['The Martian', 'The Departed', 'Saving Private Ryan', 'Good Will Hunting']"
+comdy movie,0.6,0.6,21.91,"['Forrest Gump', 'Life Is Beautiful', 'Modern Times', 'Parasite', 'City Lights']","['The Hangover', 'The Intouchables', 'Modern Times', 'Parasite', 'Forrest Gump']"
+phim có leonardo dicaprio,1.0,0.5,28.5,"['The Departed', 'Catch Me If You Can']","['Titanic', 'The Departed', 'Shutter Island', 'Catch Me If You Can']"
+The Green Mile,1.0,1.0,0.0,['The Green Mile'],['The Green Mile']
+phim có ian mckellen,1.0,0.6,21.81,"['The Lord of the Rings: The Return of the King', 'The Lord of the Rings: The Fellowship of the Ring', 'The Lord of the Rings: The Two Towers']","['The Lord of the Rings: The Fellowship of the Ring', 'The Hobbit: An Unexpected Journey', 'The Lord of the Rings: The Two Towers', 'The Da Vinci Code', 'The Lord of the Rings: The Return of the King']"
+phim của steven spielberg,0.8,0.8,1.9,"[""Schindler's List"", 'Saving Private Ryan', 'Raiders of the Lost Ark', 'Jurassic Park', 'Catch Me If You Can']","['Saving Private Ryan', ""Schindler's List"", 'E.T. the Extra-Terrestrial', 'Jurassic Park', 'Catch Me If You Can']"
+Spider-Man: Into the Spider-Ver,1.0,1.0,0.44,['Spider-Man: Into the Spider-Verse'],['Spider-Man: Into the Spider-Verse']
+phim của christopher nolan,0.6,0.6,23.64,"['The Dark Knight', 'Inception', 'Interstellar', 'The Prestige', 'Memento']","['Inception', 'Interstellar', 'The Dark Knight', 'Tenet', 'Dunkirk']"
+phim của peter jackson,1.0,0.75,27.09,"['The Lord of the Rings: The Return of the King', 'The Lord of the Rings: The Fellowship of the Ring', 'The Lord of the Rings: The Two Towers']","['The Lord of the Rings: The Fellowship of the Ring', 'The Lord of the Rings: The Two Towers', 'The Hobbit: An Unexpected Journey', 'The Lord of the Rings: The Return of the King']"
+SAvengers: Infinity,1.0,1.0,0.3,['Avengers: Infinity War'],['Avengers: Infinity War']
+phim của robert zemeckis,0.5,0.33,22.06,"['Forrest Gump', 'Back to the Future']","['Who Framed Roger Rabbit', 'Forrest Gump', 'Back To The Future']"
+phim của david fincher,0.33,0.33,23.4,"['Fight Club', 'Se7en', 'Gone Girl']","['Gone Girl', 'The Girl with the Dragon Tattoo', 'The Curious Case of Benjamin Button']"
+Like Stars Earth,1.0,1.0,0.38,['Like Stars on Earth'],['Like Stars on Earth']
+phim hành động của christopher nolan,1.0,0.67,21.7,"['The Dark Knight', 'Inception']","['Inception', 'The Dark Knight', 'Tenet']"
+phim có tom hanks thể loại tâm lý,0.4,0.5,2.6,"['Forrest Gump', 'The Green Mile', 'Saving Private Ryan', 'Toy Story', 'Catch Me If You Can']","['Forrest Gump', 'The Terminal', 'Cast Away', 'The Green Mile']"
+phim của leonardo dicaprio đạo diễn christopher nolan,0.0,0.0,22.35,"['The Departed', 'Catch Me If You Can']",['Inception']
+action movies with Christian Bale,1.0,0.67,22.1,"['The Dark Knight', 'The Prestige']","['Inception', 'The Dark Knight', 'The Prestige']"
+phim phiêu lưu của peter jackson,0.67,0.67,21.94,"['The Lord of the Rings: The Return of the King', 'The Lord of the Rings: The Fellowship of the Ring', 'The Lord of the Rings: The Two Towers']","['The Lord of the Rings: The Fellowship of the Ring', 'The Hobbit: An Unexpected Journey', 'The Lord of the Rings: The Return of the King']"

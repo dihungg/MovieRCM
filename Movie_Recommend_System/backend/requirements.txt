@@ -1,0 +1,6 @@
+flask
+flask-cors
+pandas
+openai
+python-dotenv
+difflib

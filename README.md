@@ -83,6 +83,8 @@ The project includes a clean and responsive UI with:
 - “Recommend Similar Movies” button  
 
 #### 🤖 **Dedicated Chatbot Page**
+<img width="1917" height="865" alt="Image" src="https://github.com/user-attachments/assets/2ccf2434-c568-46e2-ade8-8b9c5cd61ec9" />
+<img width="1917" height="864" alt="Image" src="https://github.com/user-attachments/assets/4023db07-09e6-4ba6-bfdc-2f16f49f0faa" />
 - Chatbot built into its own UI screen  
 - Handles:
   - Movie queries  

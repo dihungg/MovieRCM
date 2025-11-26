@@ -94,5 +94,4 @@ The project includes a clean and responsive UI with:
 
 ---
 
-## 📁 Project Structure
 

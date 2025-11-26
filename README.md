@@ -1,7 +1,7 @@
 # 🎬 Movie Recommendation System  
 # Machine Learning–Based Content Recommendation (2024–2025)
 
-<img width="650" alt="banner" src="https://github.com/user-attachments/assets/placeholder-movie" />
+<img width="1919" height="946" alt="Image" src="https://github.com/user-attachments/assets/e55b7005-da3a-48df-b3af-df816dddd5fd" />
 
 ## 📌 Overview
 
@@ -73,6 +73,8 @@ Performance:
 
 ### 🖥️ **4. User Interface**
 The project includes a clean and responsive UI with:
+<img width="1919" height="1079" alt="Image" src="https://github.com/user-attachments/assets/9b8c0630-a23c-4a2e-b74a-f068436e9730" />
+<img width="1901" height="948" alt="Image" src="https://github.com/user-attachments/assets/d49f0f29-ee5b-40ba-9dce-dacd60875097" />
 
 #### 🎞️ **Movie Browser Page**
 - Movie selection panel  
